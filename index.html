@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-zh="金融计算器" data-lang-en="Financial Calculator">金融计算器</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <!-- 语言切换按钮 -->
+        <div class="text-end mt-3">
+            <button id="languageSwitch" class="btn btn-outline-dark me-2">
+                <i class="fas fa-globe"></i> English
+            </button>
+            <a href="Financial_calculator_2.0.exe" download class="btn btn-outline-dark">
+                <i class="fas fa-download"></i> <span data-lang-zh="下载本地版" data-lang-en="Download Local Version">下载本地版</span>
+            </a>
+        </div>
+
+        <header class="text-center my-5">
+            <h1 class="display-4" data-lang-zh="金融计算器" data-lang-en="Financial Calculator">金融计算器</h1>
+            <p class="lead" data-lang-zh="专业的金融计算工具" data-lang-en="Professional Financial Calculation Tools">专业的金融计算工具</p>
+        </header>
+
+        <div class="row">
+            <!-- 左侧导航栏 -->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#currency" class="list-group-item list-group-item-action active" data-bs-toggle="list" data-lang-zh="货币乘数" data-lang-en="Currency Multiplier">货币乘数</a>
+                    <a href="#capm" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="CAPM模型" data-lang-en="CAPM Model">CAPM模型</a>
+                    <a href="#bond" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="债券估值" data-lang-en="Bond Valuation">债券估值</a>
+                    <a href="#duration" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="久期和凸性" data-lang-en="Duration and Convexity">久期和凸性</a>
+                    <a href="#return" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="债券年收益率" data-lang-en="Bond Annual Return">债券年收益率</a>
+                    <a href="#equity" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="股权估值" data-lang-en="Equity Valuation">股权估值</a>
+                    <a href="#pe" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="市盈率" data-lang-en="P/E Ratio">市盈率</a>
+                    <a href="#future" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="远期合约" data-lang-en="Forward Contract">远期合约</a>
+                    <a href="#raroc" class="list-group-item list-group-item-action" data-bs-toggle="list" data-lang-zh="RAROC" data-lang-en="RAROC">RAROC</a>
+                </div>
+            </div>
+
+            <!-- 中间内容区 -->
+            <div class="col-md-6">
+                <div class="tab-content">
+                    <!-- 货币乘数 -->
+                    <div class="tab-pane fade show active" id="currency" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" data-lang-zh="货币乘数计算器" data-lang-en="Currency Multiplier Calculator">货币乘数计算器
+                                    <button type="button" class="clear-btn" onclick="clearForm('currencyForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
+                                <form id="currencyForm">
+                                    <div class="mb-3">
+                                        <label for="r" class="form-label" data-lang-zh="法定存款准备金率 r:" data-lang-en="Required Reserve Ratio r:">法定存款准备金率 r:</label>
+                                        <input type="number" class="form-control" id="r" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="e" class="form-label" data-lang-zh="超额准备金率 e:" data-lang-en="Excess Reserve Ratio e:">超额准备金率 e:</label>
+                                        <input type="number" class="form-control" id="e" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="c" class="form-label" data-lang-zh="现金漏损率 c:" data-lang-en="Cash Leakage Ratio c:">现金漏损率 c:</label>
+                                        <input type="number" class="form-control" id="c" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Ms" class="form-label" data-lang-zh="货币供给量 Ms:" data-lang-en="Money Supply Ms:">货币供给量 Ms:</label>
+                                        <input type="number" class="form-control" id="Ms" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="B" class="form-label" data-lang-zh="基础货币 B:" data-lang-en="Base Money B:">基础货币 B:</label>
+                                        <input type="number" class="form-control" id="B" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="currencyResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAPM模型 -->
+                    <div class="tab-pane fade" id="capm" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" data-lang-zh="CAPM模型计算器" data-lang-en="CAPM Model Calculator">CAPM模型计算器
+                                    <button type="button" class="clear-btn" onclick="clearForm('capmForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
+                                <form id="capmForm">
+                                    <div class="mb-3">
+                                        <label for="rf" class="form-label" data-lang-zh="无风险收益率 rf:" data-lang-en="Risk-free Rate rf:">无风险收益率 rf:</label>
+                                        <input type="number" class="form-control" id="rf" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rm" class="form-label" data-lang-zh="市场组合收益率 rm:" data-lang-en="Market Return rm:">市场组合收益率 rm:</label>
+                                        <input type="number" class="form-control" id="rm" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="beta" class="form-label" data-lang-zh="系统性风险 β:" data-lang-en="Systematic Risk β:">系统性风险 β:</label>
+                                        <input type="number" class="form-control" id="beta" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sigma_p" class="form-label" data-lang-zh="资产组合风险 σp:" data-lang-en="Portfolio Risk σp:">资产组合风险 σp:</label>
+                                        <input type="number" class="form-control" id="sigma_p" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sigma_m" class="form-label" data-lang-zh="市场组合风险 σm:" data-lang-en="Market Risk σm:">市场组合风险 σm:</label>
+                                        <input type="number" class="form-control" id="sigma_m" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="E" class="form-label" data-lang-zh="组合预期收益率 E:" data-lang-en="Expected Return E:">组合预期收益率 E:</label>
+                                        <input type="number" class="form-control" id="E" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="capmResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 债券估值 -->
+                    <div class="tab-pane fade" id="bond">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="债券估值计算" data-lang-en="Bond Valuation Calculation">债券估值计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('bondForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" data-lang-zh="债券类型:" data-lang-en="Bond Type:">债券类型:</label>
+                                    <div class="btn-group" role="group">
+                                        <input type="radio" class="btn-check" name="bondType" id="fixedBond" value="fixed" checked>
+                                        <label class="btn btn-outline-dark" for="fixedBond" data-lang-zh="定息债券" data-lang-en="Fixed-rate Bond">定息债券</label>
+                                        
+                                        <input type="radio" class="btn-check" name="bondType" id="zeroBond" value="zero">
+                                        <label class="btn btn-outline-dark" for="zeroBond" data-lang-zh="零息债券" data-lang-en="Zero-coupon Bond">零息债券</label>
+                                        
+                                        <input type="radio" class="btn-check" name="bondType" id="perpetualBond" value="perpetual">
+                                        <label class="btn btn-outline-dark" for="perpetualBond" data-lang-zh="永续债券" data-lang-en="Perpetual Bond">永续债券</label>
+                                        
+                                        <input type="radio" class="btn-check" name="bondType" id="callableBond" value="callable">
+                                        <label class="btn btn-outline-dark" for="callableBond" data-lang-zh="可赎回债券" data-lang-en="Callable Bond">可赎回债券</label>
+                                    </div>
+                                </div>
+                                <form id="bondForm">
+                                    <div class="mb-3">
+                                        <label for="bond_PV" class="form-label" data-lang-zh="债券现值 PV:" data-lang-en="Present Value PV:">债券现值 PV:</label>
+                                        <input type="number" class="form-control" id="bond_PV" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bond_FV" class="form-label" data-lang-zh="债券终值 FV:" data-lang-en="Future Value FV:">债券终值 FV:</label>
+                                        <input type="number" class="form-control" id="bond_FV" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bond_IY" class="form-label" data-lang-zh="收益率 IY:" data-lang-en="Yield IY:">收益率 IY:</label>
+                                        <input type="number" class="form-control" id="bond_IY" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bond_PMT" class="form-label" data-lang-zh="现金流 PMT:" data-lang-en="Cash Flow PMT:">现金流 PMT:</label>
+                                        <input type="number" class="form-control" id="bond_PMT" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="bond_N" class="form-label" data-lang-zh="付息次数 N:" data-lang-en="Number of Payments N:">付息次数 N:</label>
+                                        <input type="number" class="form-control" id="bond_N" step="1">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="bondResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 久期和凸性 -->
+                    <div class="tab-pane fade" id="duration">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="久期和凸性计算" data-lang-en="Duration and Convexity Calculation">久期和凸性计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('durationForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <form id="durationForm">
+                                    <div class="mb-3">
+                                        <label for="duration_Ct" class="form-label" data-lang-zh="息票利息 Ct:" data-lang-en="Coupon Payment Ct:">息票利息 Ct:</label>
+                                        <input type="number" class="form-control" id="duration_Ct" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="duration_YTM" class="form-label" data-lang-zh="到期收益率 YTM:" data-lang-en="Yield to Maturity YTM:">到期收益率 YTM:</label>
+                                        <input type="number" class="form-control" id="duration_YTM" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="duration_N" class="form-label" data-lang-zh="付息次数 N:" data-lang-en="Number of Payments N:">付息次数 N:</label>
+                                        <input type="number" class="form-control" id="duration_N" step="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="duration_FV" class="form-label" data-lang-zh="债券面值或终值 FV:" data-lang-en="Face Value or Future Value FV:">债券面值或终值 FV:</label>
+                                        <input type="number" class="form-control" id="duration_FV" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="durationResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 债券年收益率 -->
+                    <div class="tab-pane fade" id="return">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="债券年收益率计算" data-lang-en="Bond Annual Return Calculation">债券年收益率计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('returnForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <form id="returnForm">
+                                    <div class="mb-3">
+                                        <label for="return_C" class="form-label" data-lang-zh="息票利息 C:" data-lang-en="Coupon Payment C:">息票利息 C:</label>
+                                        <input type="number" class="form-control" id="return_C" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="return_r" class="form-label" data-lang-zh="年再投资收益率 r:" data-lang-en="Annual Reinvestment Rate r:">年再投资收益率 r:</label>
+                                        <input type="number" class="form-control" id="return_r" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="return_N" class="form-label" data-lang-zh="期限 N:" data-lang-en="Term N:">期限 N:</label>
+                                        <input type="number" class="form-control" id="return_N" step="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="return_m" class="form-label" data-lang-zh="每年付息次数 m:" data-lang-en="Payments per Year m:">每年付息次数 m:</label>
+                                        <input type="number" class="form-control" id="return_m" step="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="return_FV" class="form-label" data-lang-zh="债券面值 FV:" data-lang-en="Face Value FV:">债券面值 FV:</label>
+                                        <input type="number" class="form-control" id="return_FV" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="return_P" class="form-label" data-lang-zh="债券期初价格 P:" data-lang-en="Initial Bond Price P:">债券期初价格 P:</label>
+                                        <input type="number" class="form-control" id="return_P" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="returnResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 股权估值 -->
+                    <div class="tab-pane fade" id="equity">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="股权估值计算" data-lang-en="Equity Valuation Calculation">股权估值计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('equityForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" data-lang-zh="估值模型:" data-lang-en="Valuation Model:">估值模型:</label>
+                                    <div class="btn-group" role="group">
+                                        <input type="radio" class="btn-check" name="equityModel" id="singlePeriod" value="single" checked>
+                                        <label class="btn btn-outline-dark" for="singlePeriod" data-lang-zh="单期模型" data-lang-en="Single Period">单期模型</label>
+                                        
+                                        <input type="radio" class="btn-check" name="equityModel" id="zeroGrowth" value="zero">
+                                        <label class="btn btn-outline-dark" for="zeroGrowth" data-lang-zh="零增长模型" data-lang-en="Zero Growth">零增长模型</label>
+                                        
+                                        <input type="radio" class="btn-check" name="equityModel" id="constantGrowth" value="constant">
+                                        <label class="btn btn-outline-dark" for="constantGrowth" data-lang-zh="固定增长模型" data-lang-en="Constant Growth">固定增长模型</label>
+                                    </div>
+                                </div>
+                                <form id="equityForm">
+                                    <div class="mb-3">
+                                        <label for="equity_D1" class="form-label" data-lang-zh="第一期股利 D1:" data-lang-en="First Period Dividend D1:">第一期股利 D1:</label>
+                                        <input type="number" class="form-control" id="equity_D1" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="equity_r" class="form-label" data-lang-zh="必要收益率 r:" data-lang-en="Required Return r:">必要收益率 r:</label>
+                                        <input type="number" class="form-control" id="equity_r" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="equity_g" class="form-label" data-lang-zh="增长率 g:" data-lang-en="Growth Rate g:">增长率 g:</label>
+                                        <input type="number" class="form-control" id="equity_g" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="equity_P1" class="form-label" data-lang-zh="期末价格 P1:" data-lang-en="Ending Price P1:">期末价格 P1:</label>
+                                        <input type="number" class="form-control" id="equity_P1" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="equityResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 市盈率 -->
+                    <div class="tab-pane fade" id="pe">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="市盈率计算" data-lang-en="P/E Ratio Calculation">市盈率计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('peForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <form id="peForm">
+                                    <div class="mb-3">
+                                        <label for="pe_P" class="form-label" data-lang-zh="股票价格 P:" data-lang-en="Stock Price P:">股票价格 P:</label>
+                                        <input type="number" class="form-control" id="pe_P" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pe_EPS" class="form-label" data-lang-zh="每股收益 EPS:" data-lang-en="Earnings per Share EPS:">每股收益 EPS:</label>
+                                        <input type="number" class="form-control" id="pe_EPS" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pe_D" class="form-label" data-lang-zh="每股股利 D:" data-lang-en="Dividend per Share D:">每股股利 D:</label>
+                                        <input type="number" class="form-control" id="pe_D" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pe_r" class="form-label" data-lang-zh="必要收益率 r:" data-lang-en="Required Return r:">必要收益率 r:</label>
+                                        <input type="number" class="form-control" id="pe_r" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pe_g" class="form-label" data-lang-zh="增长率 g:" data-lang-en="Growth Rate g:">增长率 g:</label>
+                                        <input type="number" class="form-control" id="pe_g" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="peResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 远期合约 -->
+                    <div class="tab-pane fade" id="future">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="远期合约估值" data-lang-en="Forward Contract Valuation">远期合约估值</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('futureForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <form id="futureForm">
+                                    <div class="mb-3">
+                                        <label for="future_S" class="form-label" data-lang-zh="现货价格 S:" data-lang-en="Spot Price S:">现货价格 S:</label>
+                                        <input type="number" class="form-control" id="future_S" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="future_r" class="form-label" data-lang-zh="无风险利率 r:" data-lang-en="Risk-free Rate r:">无风险利率 r:</label>
+                                        <input type="number" class="form-control" id="future_r" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="future_T" class="form-label" data-lang-zh="到期时间 T:" data-lang-en="Time to Maturity T:">到期时间 T:</label>
+                                        <input type="number" class="form-control" id="future_T" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="future_q" class="form-label" data-lang-zh="股息率 q:" data-lang-en="Dividend Yield q:">股息率 q:</label>
+                                        <input type="number" class="form-control" id="future_q" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="future_K" class="form-label" data-lang-zh="执行价格 K:" data-lang-en="Strike Price K:">执行价格 K:</label>
+                                        <input type="number" class="form-control" id="future_K" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="futureResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RAROC -->
+                    <div class="tab-pane fade" id="raroc">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="card-title mb-0" data-lang-zh="RAROC计算" data-lang-en="RAROC Calculation">RAROC计算</h5>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('rarocForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
+                                </div>
+                                <form id="rarocForm">
+                                    <div class="mb-3">
+                                        <label for="raroc_R" class="form-label" data-lang-zh="预期收益 R:" data-lang-en="Expected Return R:">预期收益 R:</label>
+                                        <input type="number" class="form-control" id="raroc_R" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="raroc_EL" class="form-label" data-lang-zh="预期损失 EL:" data-lang-en="Expected Loss EL:">预期损失 EL:</label>
+                                        <input type="number" class="form-control" id="raroc_EL" step="0.01">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="raroc_C" class="form-label" data-lang-zh="经济资本 C:" data-lang-en="Economic Capital C:">经济资本 C:</label>
+                                        <input type="number" class="form-control" id="raroc_C" step="0.01">
+                                    </div>
+                                    <button type="submit" class="btn btn-dark" data-lang-zh="计算" data-lang-en="Calculate">计算</button>
+                                </form>
+                                <div id="rarocResult" class="mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧计算器 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" data-lang-zh="计算器" data-lang-en="Calculator">计算器</h5>
+                        <div class="calculator">
+                            <div class="calculator-display">
+                                <input type="text" class="form-control mb-2" id="calculatorInput" readonly>
+                            </div>
+                            <div class="calculator-buttons">
+                                <div class="row mb-2">
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="clearCalculator()" data-lang-zh="C" data-lang-en="C">C</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator('(')">(</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator(')')">)</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator('/')">/</button></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('7')">7</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('8')">8</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('9')">9</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator('*')">×</button></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('4')">4</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('5')">5</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('6')">6</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator('-')">-</button></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('1')">1</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('2')">2</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('3')">3</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="appendToCalculator('+')">+</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('0')">0</button></div>
+                                    <div class="col-3"><button class="btn btn-outline-dark w-100" onclick="appendToCalculator('.')">.</button></div>
+                                    <div class="col-3"><button class="btn btn-dark w-100" onclick="calculate()">=</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 历史记录容器 -->
+                        <div class="calculator-history mt-3">
+                            <h6 class="mb-2" data-lang-zh="历史记录" data-lang-en="History">历史记录</h6>
+                            <div class="history-container" id="calculatorHistory"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 语言切换功能
+        const languageSwitch = document.getElementById('languageSwitch');
+        let currentLanguage = 'zh';
+        
+        languageSwitch.addEventListener('click', function() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            languageSwitch.innerHTML = currentLanguage === 'zh' ? 
+                '<i class="fas fa-globe"></i> English' : 
+                '<i class="fas fa-globe"></i> 中文';
+            updateLanguage();
+        });
+
+        // 初始化语言切换按钮图标
+        languageSwitch.innerHTML = '<i class="fas fa-globe"></i> English';
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-lang-zh], [data-lang-en]');
+            elements.forEach(element => {
+                if (currentLanguage === 'zh') {
+                    if (element.hasAttribute('data-lang-zh')) {
+                        element.textContent = element.getAttribute('data-lang-zh');
+                    }
+                } else {
+                    if (element.hasAttribute('data-lang-en')) {
+                        element.textContent = element.getAttribute('data-lang-en');
+                    }
+                }
+            });
+        }
+
+        // 清空表单函数
+        function clearForm(formId) {
+            const form = document.getElementById(formId);
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.value = '';
+            });
+            const resultDiv = form.parentElement.querySelector('.result');
+            if (resultDiv) {
+                resultDiv.innerHTML = '';
+            }
+        }
+
+        // 计算器功能
+        function appendToCalculator(value) {
+            const input = document.getElementById('calculatorInput');
+            input.value += value;
+        }
+
+        function clearCalculator() {
+            document.getElementById('calculatorInput').value = '';
+        }
+
+        function calculate() {
+            const input = document.getElementById('calculatorInput');
+            try {
+                input.value = eval(input.value);
+            } catch (error) {
+                input.value = currentLanguage === 'zh' ? '错误' : 'Error';
+            }
+        }
+    </script>
+    <script src="calculator.js"></script>
+</body>
+</html> 
