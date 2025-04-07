@@ -173,33 +173,30 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 更新页面语言
-    function updatePageLanguage(lang) {
-        document.querySelector('h1').textContent = translations[lang].title;
-        document.querySelector('.lead').textContent = translations[lang].subtitle;
-        document.querySelector('.calculator .card-title').textContent = translations[lang].calculator;
-        document.querySelector('.calculator-buttons .btn:first-child').textContent = translations[lang].clear;
-        document.querySelector('.calculator-history h6').textContent = translations[lang].history;
+    function updateLanguage(lang) {
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        const elements = document.querySelectorAll('[data-lang-zh], [data-lang-en]');
         
-        // 更新导航栏
-        const navItems = document.querySelectorAll('.list-group-item');
-        navItems[0].textContent = translations[lang].currency;
-        navItems[1].textContent = translations[lang].capm;
-        navItems[2].textContent = translations[lang].bond;
-        navItems[3].textContent = translations[lang].duration;
-        navItems[4].textContent = translations[lang].return;
-        navItems[5].textContent = translations[lang].equity;
-        navItems[6].textContent = translations[lang].pe;
-        navItems[7].textContent = translations[lang].future;
-        navItems[8].textContent = translations[lang].raroc;
+        elements.forEach(element => {
+            const targetLang = lang === 'zh' ? 'data-lang-zh' : 'data-lang-en';
+            const text = element.getAttribute(targetLang);
+            if (text) {
+                element.textContent = text;
+            }
+        });
+
+        // 更新语言切换按钮
+        const languageSwitch = document.getElementById('languageSwitch');
+        languageSwitch.innerHTML = lang === 'zh' ? 
+            '<i class="fas fa-globe"></i> English' : 
+            '<i class="fas fa-globe"></i> 中文';
     }
 
     // 语言切换按钮事件
     document.getElementById('languageSwitch').addEventListener('click', function() {
         const currentLang = document.documentElement.lang;
         const newLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
-        document.documentElement.lang = newLang;
-        updatePageLanguage(newLang === 'zh-CN' ? 'zh' : 'en');
-        this.innerHTML = newLang === 'zh-CN' ? '<i class="fas fa-globe"></i> English' : '<i class="fas fa-globe"></i> 中文';
+        updateLanguage(newLang === 'zh-CN' ? 'zh' : 'en');
     });
 
     // 货币乘数计算

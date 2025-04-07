@@ -24,6 +24,9 @@ body {
 .card-title {
     color: #343a40;
     font-weight: bold;
+    position: relative;
+    padding-right: 80px;
+    margin-bottom: 20px;
 }
 
 .form-label {
@@ -267,7 +270,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    padding: 5px 10px;
+    padding: 5px 15px;
     background-color: #000 !important;
     color: #fff !important;
     border: none !important;
@@ -275,7 +278,8 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 14px;
-    z-index: 1;
+    z-index: 10;
+    display: inline-block !important;
 }
 
 .clear-btn:hover {

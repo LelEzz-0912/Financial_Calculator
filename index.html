@@ -48,7 +48,8 @@
                     <div class="tab-pane fade show active" id="currency" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" data-lang-zh="货币乘数计算器" data-lang-en="Currency Multiplier Calculator">货币乘数计算器
+                                <h5 class="card-title">
+                                    <span data-lang-zh="货币乘数计算器" data-lang-en="Currency Multiplier Calculator">货币乘数计算器</span>
                                     <button type="button" class="clear-btn" onclick="clearForm('currencyForm')">
                                         <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
                                     </button>
@@ -85,7 +86,8 @@
                     <div class="tab-pane fade" id="capm" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" data-lang-zh="CAPM模型计算器" data-lang-en="CAPM Model Calculator">CAPM模型计算器
+                                <h5 class="card-title">
+                                    <span data-lang-zh="CAPM模型计算器" data-lang-en="CAPM Model Calculator">CAPM模型计算器</span>
                                     <button type="button" class="clear-btn" onclick="clearForm('capmForm')">
                                         <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
                                     </button>
@@ -123,13 +125,15 @@
                     </div>
 
                     <!-- 债券估值 -->
-                    <div class="tab-pane fade" id="bond">
+                    <div class="tab-pane fade" id="bond" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="债券估值计算" data-lang-en="Bond Valuation Calculation">债券估值计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('bondForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="债券估值计算器" data-lang-en="Bond Valuation Calculator">债券估值计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('bondForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <div class="mb-3">
                                     <label class="form-label" data-lang-zh="债券类型:" data-lang-en="Bond Type:">债券类型:</label>
                                     <div class="btn-group" role="group">
@@ -175,13 +179,15 @@
                     </div>
 
                     <!-- 久期和凸性 -->
-                    <div class="tab-pane fade" id="duration">
+                    <div class="tab-pane fade" id="duration" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="久期和凸性计算" data-lang-en="Duration and Convexity Calculation">久期和凸性计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('durationForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="久期和凸性计算器" data-lang-en="Duration and Convexity Calculator">久期和凸性计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('durationForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <form id="durationForm">
                                     <div class="mb-3">
                                         <label for="duration_Ct" class="form-label" data-lang-zh="息票利息 Ct:" data-lang-en="Coupon Payment Ct:">息票利息 Ct:</label>
@@ -207,13 +213,15 @@
                     </div>
 
                     <!-- 债券年收益率 -->
-                    <div class="tab-pane fade" id="return">
+                    <div class="tab-pane fade" id="return" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="债券年收益率计算" data-lang-en="Bond Annual Return Calculation">债券年收益率计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('returnForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="债券年收益率计算器" data-lang-en="Bond Annual Return Calculator">债券年收益率计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('returnForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <form id="returnForm">
                                     <div class="mb-3">
                                         <label for="return_C" class="form-label" data-lang-zh="息票利息 C:" data-lang-en="Coupon Payment C:">息票利息 C:</label>
@@ -247,13 +255,15 @@
                     </div>
 
                     <!-- 股权估值 -->
-                    <div class="tab-pane fade" id="equity">
+                    <div class="tab-pane fade" id="equity" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="股权估值计算" data-lang-en="Equity Valuation Calculation">股权估值计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('equityForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="股权估值计算器" data-lang-en="Equity Valuation Calculator">股权估值计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('equityForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <div class="mb-3">
                                     <label class="form-label" data-lang-zh="估值模型:" data-lang-en="Valuation Model:">估值模型:</label>
                                     <div class="btn-group" role="group">
@@ -292,13 +302,15 @@
                     </div>
 
                     <!-- 市盈率 -->
-                    <div class="tab-pane fade" id="pe">
+                    <div class="tab-pane fade" id="pe" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="市盈率计算" data-lang-en="P/E Ratio Calculation">市盈率计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('peForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="市盈率计算器" data-lang-en="P/E Ratio Calculator">市盈率计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('peForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <form id="peForm">
                                     <div class="mb-3">
                                         <label for="pe_P" class="form-label" data-lang-zh="股票价格 P:" data-lang-en="Stock Price P:">股票价格 P:</label>
@@ -328,13 +340,15 @@
                     </div>
 
                     <!-- 远期合约 -->
-                    <div class="tab-pane fade" id="future">
+                    <div class="tab-pane fade" id="future" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="远期合约估值" data-lang-en="Forward Contract Valuation">远期合约估值</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('futureForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="远期合约计算器" data-lang-en="Forward Contract Calculator">远期合约计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('futureForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <form id="futureForm">
                                     <div class="mb-3">
                                         <label for="future_S" class="form-label" data-lang-zh="现货价格 S:" data-lang-en="Spot Price S:">现货价格 S:</label>
@@ -364,13 +378,15 @@
                     </div>
 
                     <!-- RAROC -->
-                    <div class="tab-pane fade" id="raroc">
+                    <div class="tab-pane fade" id="raroc" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="card-title mb-0" data-lang-zh="RAROC计算" data-lang-en="RAROC Calculation">RAROC计算</h5>
-                                    <button class="btn btn-outline-danger btn-sm" onclick="clearForm('rarocForm')" data-lang-zh="清空" data-lang-en="Clear">清空</button>
-                                </div>
+                                <h5 class="card-title">
+                                    <span data-lang-zh="RAROC计算器" data-lang-en="RAROC Calculator">RAROC计算器</span>
+                                    <button type="button" class="clear-btn" onclick="clearForm('rarocForm')">
+                                        <span data-lang-zh="清空" data-lang-en="Clear">清空</span>
+                                    </button>
+                                </h5>
                                 <form id="rarocForm">
                                     <div class="mb-3">
                                         <label for="raroc_R" class="form-label" data-lang-zh="预期收益 R:" data-lang-en="Expected Return R:">预期收益 R:</label>
@@ -453,28 +469,29 @@
         
         languageSwitch.addEventListener('click', function() {
             currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
-            languageSwitch.innerHTML = currentLanguage === 'zh' ? 
-                '<i class="fas fa-globe"></i> English' : 
-                '<i class="fas fa-globe"></i> 中文';
             updateLanguage();
         });
 
-        // 初始化语言切换按钮图标
-        languageSwitch.innerHTML = '<i class="fas fa-globe"></i> English';
-
         function updateLanguage() {
             const elements = document.querySelectorAll('[data-lang-zh], [data-lang-en]');
+            document.documentElement.lang = currentLanguage === 'zh' ? 'zh-CN' : 'en';
+            
             elements.forEach(element => {
-                if (currentLanguage === 'zh') {
-                    if (element.hasAttribute('data-lang-zh')) {
-                        element.textContent = element.getAttribute('data-lang-zh');
-                    }
-                } else {
-                    if (element.hasAttribute('data-lang-en')) {
-                        element.textContent = element.getAttribute('data-lang-en');
+                const targetLang = currentLanguage === 'zh' ? 'data-lang-zh' : 'data-lang-en';
+                const text = element.getAttribute(targetLang);
+                if (text) {
+                    if (element.tagName === 'SPAN' && element.parentElement.classList.contains('clear-btn')) {
+                        element.textContent = text;
+                    } else {
+                        element.textContent = text;
                     }
                 }
             });
+
+            // 更新语言切换按钮
+            languageSwitch.innerHTML = currentLanguage === 'zh' ? 
+                '<i class="fas fa-globe"></i> English' : 
+                '<i class="fas fa-globe"></i> 中文';
         }
 
         // 清空表单函数
